@@ -9,12 +9,12 @@
                 "children":
                 [
                     {
-                        "caption": "Run JSLint",
-                        "command": "jslint"
+                        "caption": "Run jsrevival",
+                        "command": "jsrevival"
                     },
                     {
-                        "caption": "Show JSLint Result",
-                        "command": "show_jslint_result"
+                        "caption": "Show jsrevival Result",
+                        "command": "show_jsrevival_result"
                     }
                 ]
             }
@@ -30,7 +30,7 @@
                 "children":
                 [
                     {
-                        "caption": "JSLint",
+                        "caption": "jsrevival",
                         "children":
                         [
                             {
@@ -38,7 +38,7 @@
                                 "command": "open_file",
                                 "args":
                                 {
-                                    "file": "${packages}/sublime-jslint/sublime-jslint.sublime-settings"
+                                    "file": "${packages}/sublime-jsrevival/sublime-jsrevival.sublime-settings"
                                 }
                             },
                             {
@@ -46,7 +46,7 @@
                                 "command": "open_file",
                                 "args":
                                 {
-                                    "file": "${packages}/User/sublime-jslint.sublime-settings"
+                                    "file": "${packages}/User/sublime-jsrevival.sublime-settings"
                                 }
                             }
                         ]

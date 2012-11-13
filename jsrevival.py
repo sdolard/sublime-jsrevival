@@ -5,22 +5,21 @@ import sublime_plugin
 from statusprocess import *
 from asyncprocess import *
 
-RESULT_VIEW_NAME = 'jslint_result_view'
-SETTINGS_FILE = "sublime-jslint.sublime-settings"
+RESULT_VIEW_NAME = 'jsrevival_result_view'
+SETTINGS_FILE = "sublime-jsrevival.sublime-settings"
 
-class ShowJslintResultCommand(sublime_plugin.WindowCommand):
-  """show jslint result"""
+class ShowJsrevivalResultCommand(sublime_plugin.WindowCommand):
+  """show jsrevival result"""
   def run(self):
     self.window.run_command("show_panel", {"panel": "output."+RESULT_VIEW_NAME})
 
-class JslintCommand(sublime_plugin.WindowCommand):
+class JsrevivalCommand(sublime_plugin.WindowCommand):
   def run(self):
     s = sublime.load_settings(SETTINGS_FILE)
 
     file_path = self.window.active_view().file_name()
     file_name = os.path.basename(file_path)
 
-    self.debug = s.get('debug', False)
     self.buffered_data = ''
     self.file_path = file_path
     self.file_name = file_name
@@ -28,26 +27,15 @@ class JslintCommand(sublime_plugin.WindowCommand):
     self.tests_panel_showed = False
     self.ignored_error_count = 0
     self.ignore_errors = s.get('ignore_errors', [])
-    self.use_node_jslint = s.get('use_node_jslint', False)
 
     self.init_tests_panel()
 
-    if (self.use_node_jslint):
-      cmd = 'jslint ' + s.get('node_jslint_options', '') + ' "' + file_path + '"'
-    else:
-      if len(s.get('jslint_jar', '')) > 0:
-        jslint_jar = s.get('jslint_jar')
-      else:
-        jslint_jar = sublime.packages_path() + '/sublime-jslint/jslint4java-2.0.1.jar'
-      cmd = 'java -jar "' + jslint_jar + '" ' + s.get('jslint_options', '') + ' "' + file_path + '"'
-
-    if self.debug:
-      print "DEBUG: " + str(cmd)
+    cmd = 'jsrevival -r sublime-text -o' + s.get('options', '') +' -p ' + s.get('predef', '') + ' "' + file_path + '"'
 
     AsyncProcess(cmd, self)
-    StatusProcess('Starting JSLint for file ' + file_name, self)
+    StatusProcess('Starting jsrevival for file ' + file_name, self)
 
-    JsLintEventListener.disabled = True
+    JsrevivalEventListener.disabled = True
 
   def init_tests_panel(self):
     if not hasattr(self, 'output_view'):
@@ -83,35 +71,12 @@ class JslintCommand(sublime_plugin.WindowCommand):
 
     # ignore error.
     text = data
-    if (len(self.ignore_errors) > 0) and (not self.use_node_jslint):
-      text = ''
-      for line in data.split('\n'):
-        if len(line) == 0:
-          continue
-        ignored = False
-        for rule in self.ignore_errors:
-          if re.search(rule, line):
-            ignored = True
-            self.ignored_error_count += 1
-            if self.debug:
-              print "text match line "
-              print "rule = " + rule
-              print "line = " + line
-              print "---------"
-            break
-        if ignored == False:
-          text += line + '\n'
-
 
     self.show_tests_panel()
     selection_was_at_end = (len(self.output_view.sel()) == 1 and self.output_view.sel()[0] == sublime.Region(self.output_view.size()))
     self.output_view.set_read_only(False)
     edit = self.output_view.begin_edit()
     self.output_view.insert(edit, self.output_view.size(), text)
-
-    if end and not self.use_node_jslint:
-      text = '\njslint: ignored ' + str(self.ignored_error_count) + ' errors.\n'
-      self.output_view.insert(edit, self.output_view.size(), text)
 
     # if selection_was_at_end:
     #   self.output_view.show(self.output_view.size())
@@ -131,11 +96,11 @@ class JslintCommand(sublime_plugin.WindowCommand):
       msg = ''
     self.append_data(proc, msg, True)
 
-    JsLintEventListener.disabled = False
+    JsrevivalEventListener.disabled = False
 
 
-class JsLintEventListener(sublime_plugin.EventListener):
-  """jslint event"""
+class JsrevivalEventListener(sublime_plugin.EventListener):
+  """jsrevival event"""
   disabled = False
   def __init__(self):
     self.previous_resion = None
@@ -149,8 +114,8 @@ class JsLintEventListener(sublime_plugin.EventListener):
     if view.file_name().endswith('.js') == False:
       return
 
-    # run jslint.
-    sublime.active_window().run_command("jslint")
+    # run jsrevival.
+    sublime.active_window().run_command("jsrevival")
 
   def on_deactivated(self, view):
     if view.name() != RESULT_VIEW_NAME:
@@ -161,7 +126,7 @@ class JsLintEventListener(sublime_plugin.EventListener):
       self.file_view.erase_regions(RESULT_VIEW_NAME)
 
   def on_selection_modified(self, view):
-    if JsLintEventListener.disabled:
+    if JsrevivalEventListener.disabled:
       return
     if view.name() != RESULT_VIEW_NAME:
       return
@@ -173,20 +138,13 @@ class JsLintEventListener(sublime_plugin.EventListener):
       return
     self.previous_resion = region
 
-    # extract line from jslint result.
-    if (s.get('use_node_jslint', False)):
-      pattern_position = "\\/\\/ Line (\d+), Pos (\d+)$"
-      text = view.substr(region)
-      text = re.findall(pattern_position, text)
-      if len(text) > 0:
-        line = int(text[0][0])
-        col = int(text[0][1])
-    else:
-      text = view.substr(region).split(':')
-      if len(text) < 4 or text[0] != 'jslint' or re.match('\d+', text[2]) == None or re.match('\d+', text[3]) == None:
-          return
-      line = int(text[2])
-      col = int(text[3])
+    # extract line from jsrevival result.
+
+	text = view.substr(region).split(':')
+	if len(text) < 4 or text[0] != 'jslint' or re.match('\d+', text[2]) == None or re.match('\d+', text[3]) == None:
+	    return
+	line = int(text[2])
+	col = int(text[3])
 
     # hightligh view line.
     view.add_regions(RESULT_VIEW_NAME, [region], "comment")

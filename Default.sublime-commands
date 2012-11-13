@@ -1,24 +1,24 @@
 [
     {
-        "caption": "JSLint: Run JSLint",
-        "command": "jslint"
+        "caption": "jsrevival: Run jsrevival",
+        "command": "jsrevival"
     },
     {
-        "caption": "JSLint: Show JSLint Result",
-        "command": "show_jslint_result"
+        "caption": "jsrevival: Show jsrevival result",
+        "command": "show_jsrevival_result"
     },
     {
-        "caption": "Preferences: JSLint Settings – Default",
+        "caption": "Preferences: jsrevival Settings – Default",
         "command": "open_file", "args":
         {
-            "file": "${packages}/sublime-jslint/sublime-jslint.sublime-settings"
+            "file": "${packages}/sublime-jsrevival/sublime-jsrevival.sublime-settings"
         }
     },
     {
-        "caption": "Preferences: JSLint Settings – User",
+        "caption": "Preferences: jsrevival Settings – User",
         "command": "open_file", "args":
         {
-            "file": "${packages}/User/sublime-jslint.sublime-settings"
+            "file": "${packages}/User/sublime-jsrevival.sublime-settings"
         }
     }
 ]

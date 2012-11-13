@@ -1,0 +1,4 @@
+{
+	"predef": "",
+	"options": "es5: false, properties: false, maxlen: 0, debug: false, newcap: false, unparam: false, sub: false, vars: false, passfail: false, undef: false"
+}
