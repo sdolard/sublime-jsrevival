@@ -25,13 +25,9 @@ class JsrevivalCommand(sublime_plugin.WindowCommand):
     self.file_name = file_name
     self.is_running = True
     self.tests_panel_showed = False
-    self.ignored_error_count = 0
-    self.ignore_errors = s.get('ignore_errors', [])
-
     self.init_tests_panel()
 
-    cmd = 'jsrevival -r sublime-text -o' + s.get('options', '') +' -p ' + s.get('predef', '') + ' "' + file_path + '"'
-
+    cmd = 'jsrevival -r sublime-text -o "' + s.get('options', '') +'" -p "' + s.get('predef', '') + '" "' + file_path + '"'
     AsyncProcess(cmd, self)
     StatusProcess('Starting jsrevival for file ' + file_name, self)
 
@@ -105,11 +101,10 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
   def __init__(self):
     self.previous_resion = None
     self.file_view = None
+    self.line_re = re.compile('^(.*)#.*?l(\\d*):(\\d*)>(.*)$')
 
   def on_post_save(self, view):
     s = sublime.load_settings(SETTINGS_FILE)
-    if s.get('run_on_save', False) == False:
-      return
 
     if view.file_name().endswith('.js') == False:
       return
@@ -139,12 +134,11 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
     self.previous_resion = region
 
     # extract line from jsrevival result.
-
-	text = view.substr(region).split(':')
-	if len(text) < 4 or text[0] != 'jslint' or re.match('\d+', text[2]) == None or re.match('\d+', text[3]) == None:
-	    return
-	line = int(text[2])
-	col = int(text[3])
+    m = self.line_re.match(view.substr(region))
+    if m == None:
+        return
+    line = int(m.group(2))
+    col = int(m.group(3))
 
     # hightligh view line.
     view.add_regions(RESULT_VIEW_NAME, [region], "comment")
@@ -167,5 +161,4 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
 
     # highlight file_view line
     file_view.add_regions(RESULT_VIEW_NAME, [file_region], "string")
-
 

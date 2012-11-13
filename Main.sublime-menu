@@ -4,8 +4,8 @@
         "children":
         [
             {
-                "caption": "Lint",
-                "id": "lint",
+                "caption": "jsrevival",
+                "id": "jsrevival",
                 "children":
                 [
                     {
