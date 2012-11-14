@@ -1,4 +1,4 @@
-JSLint support for Sublime Text 2 by using jslint4java
+jsrevival support for Sublime Text 2 by using node
 ========================
 
 Sublime Text 2 (http://www.sublimetext.com/2) is a sophisticated text editor for code, html and prose. You'll love the slick user interface and extraordinary features.
@@ -21,7 +21,8 @@ Features
 Requirements
 -------------
 
-- java, and make sure java has been added to PATH
+- node, and make sure node has been added to PATH
+- jsrevival, and make sure jsrevival has been added to PATH
 
 Installation
 -------------

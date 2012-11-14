@@ -74,13 +74,8 @@ class JsrevivalCommand(sublime_plugin.WindowCommand):
     edit = self.output_view.begin_edit()
     self.output_view.insert(edit, self.output_view.size(), text)
 
-    # if selection_was_at_end:
-    #   self.output_view.show(self.output_view.size())
     self.output_view.end_edit(edit)
     self.output_view.set_read_only(True)
-
-    # if end:
-    #   self.output_view.run_command("goto_line", {"line": 1})
 
   def update_status(self, msg, progress):
     sublime.status_message(msg + " " + progress)
@@ -141,7 +136,7 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
     col = int(m.group(3))
 
     # hightligh view line.
-    view.add_regions(RESULT_VIEW_NAME, [region], "comment")
+    view.add_regions(RESULT_VIEW_NAME, [region], "comment", "dot")
 
     # find the file view.
     file_path = view.settings().get('file_path')
@@ -160,5 +155,5 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
     file_region = file_view.line(file_view.sel()[0])
 
     # highlight file_view line
-    file_view.add_regions(RESULT_VIEW_NAME, [file_region], "string")
+    file_view.add_regions(RESULT_VIEW_NAME, [file_region], "string", "dot")
 
