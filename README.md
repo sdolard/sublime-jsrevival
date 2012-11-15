@@ -1,7 +1,7 @@
 jsrevival support for Sublime Text 2 by using node
+========================
 
 jsrevival is based on a fork of https://github.com/fbzhong/sublime-jslint
-========================
 
 Sublime Text 2 (http://www.sublimetext.com/2) is a text editor. 
 
