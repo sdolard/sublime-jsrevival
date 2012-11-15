@@ -1,0 +1,20 @@
+{
+	"schema_version": "1.2",
+	"packages": [
+		{
+			"name": "jsrevival",
+			"description": "Another interface to jslint. Base on jsrevival node package. Require node and jsrevival",
+			"author": "sdolard <sdolard@gmail.com>",
+			"homepage": "https://github.com/sdolard/sublime-jsrevival",
+			"last_modified": "2012-11-15 08:50:00",
+			"platforms": {
+				"*": [
+					{
+						"version": "0.0.1",
+						"url": "https://nodeload.github.com/sdolard/sublime-jsrevival/zipball/v0.0.1"
+					}
+				]
+			}
+		}
+	]
+}

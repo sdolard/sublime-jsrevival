@@ -1,20 +1,20 @@
 jsrevival support for Sublime Text 2 by using node
 ========================
 
-jsrevival is based on a fork of https://github.com/fbzhong/sublime-jslint
+sublime-jsrevival is based on a fork of https://github.com/fbzhong/sublime-jslint
 
 Sublime Text 2 (http://www.sublimetext.com/2) is a text editor. 
 
-jsrevival (https://github.com/sdolard/node-jsrevival) is a nodejs wrapper around the jslint tool by Douglas Crockford, [jslint](http://jslint.com). It provides an interface for detecting potential problems in JavaScript code.
+jsrevival (https://github.com/sdolard/node-jsrevival) is a another nodejs wrapper around the jslint tool by Douglas Crockford, [jslint](http://jslint.com). It provides an interface for detecting potential problems in JavaScript code.
 
 This project provide a plugin to add jsrevival support for Sublime Text 2.
 
 Features
 -------------
 
-- jsrevival: Run jsrevival (ctrl+j), or run jsrevival on save
+- jsrevival: run jsrevival (ctrl+j), or run jsrevival on save
 
-- jsrevival: Show jsrevival Result
+- jsrevival: show jsrevival Result
 
 - Highlight error line by click on the result view
 
@@ -46,10 +46,10 @@ How to use?
 
 - Using the Command Palette (Windows and Linux: Ctrl+Shift+P, OSX: Command+Shift+P) then search for:
 
-    - jsrevival: Run jsrevival (ctrl+j)
-    - jsrevival: Show jsrevival Result
+    - jsrevival: run jsrevival (ctrl+j)
+    - jsrevival: show jsrevival Result
 
-Open up a .js file and hit ctrl+j to run jsrevival. An new output panel will appear giving you the jsrevival results:
+Open up a .js file and hit ctrl+j to run jsrevival. An new output panel will appear giving you the jsrevival results.
 
 Screenshots
 -------------
