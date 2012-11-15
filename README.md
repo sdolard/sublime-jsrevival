@@ -111,7 +111,6 @@ Settings can be opened via the Command Palette, or the Preferences > Package Set
 New BSD License
 -------------
 
-
 Copyright (c) 2012, Sébastien Dolard <sdolard@gmail.com>
 Copyright (c) 2011, Robin Zhong <fbzhong@gmail.com>
 All rights reserved.
