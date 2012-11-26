@@ -6,7 +6,7 @@
 			"description": "Another interface to jslint. Base on jsrevival node package. Require node and jsrevival",
 			"author": "sdolard <sdolard@gmail.com>",
 			"homepage": "https://github.com/sdolard/sublime-jsrevival",
-			"last_modified": "2012-11-15 08:50:00",
+			"last_modified": "2012-11-26 08:59:00",
 			"platforms": {
 				"*": [
 					{
