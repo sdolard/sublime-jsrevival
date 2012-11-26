@@ -42,5 +42,5 @@
 	//   vars: true # if multiple var statements per function should be allowed
 	//   white: true # if sloppy whitespace is tolerated
 	//   windows: true # if MS Windows-specific globals should be predefined
-	"options": "es5: false, properties: false, maxlen: 0, debug: false, newcap: false, unparam: false, sub: false, vars: false, passfail: false, undef: false"
+	"options": "es5: false, properties: false, maxlen: 0, debug: false, newcap: false, unparam: false, sub: false, vars: false, passfail: false, undef: false, bitwise: false, eqeq=false"
 }

@@ -38,7 +38,7 @@
                                 "command": "open_file",
                                 "args":
                                 {
-                                    "file": "${packages}/sublime-jsrevival/sublime-jsrevival.sublime-settings"
+                                    "file": "${packages}/jsrevival/sublime-jsrevival.sublime-settings"
                                 }
                             },
                             {
