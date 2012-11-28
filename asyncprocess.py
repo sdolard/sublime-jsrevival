@@ -4,13 +4,26 @@ import subprocess
 import functools
 import time
 import sublime
+import sys
+
+#if os.getenv('PATH') is not None:
+  #os.environ['PATH'] = ':'.join([os.getenv('PATH')])
+#print "DEBUG_EXEC: " + str(os.getenv('PATH'))
+#print "DEBUG_EXEC: " + str(os.environ)
+#print "DEBUG_EXEC: " + str(os.name)
+#print "DEBUG_EXEC: " + str(sys.platform)
 
 class AsyncProcess(object):
   def __init__(self, cmd, listener):
     self.cmd = cmd
     self.listener = listener
+    self.env = None
+
+    if sys.platform == "darwin":
+    	self.env = {"PATH": "/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/X11/bin"}
+    	
     #print "DEBUG_EXEC: " + str(self.cmd)
-    self.proc = subprocess.Popen(self.cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    self.proc = subprocess.Popen(self.cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=self.env)
 
     if self.proc.stdout:
       thread.start_new_thread(self.read_stdout, ())
