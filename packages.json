@@ -10,8 +10,8 @@
 			"platforms": {
 				"*": [
 					{
-						"version": "0.0.5",
-						"url": "https://nodeload.github.com/sdolard/sublime-jsrevival/zipball/v0.0.5"
+						"version": "0.0.6",
+						"url": "https://nodeload.github.com/sdolard/sublime-jsrevival/zipball/v0.0.6"
 					}
 				]
 			}
