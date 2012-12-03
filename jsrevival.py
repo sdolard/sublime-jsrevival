@@ -101,7 +101,7 @@ class JsrevivalEventListener(sublime_plugin.EventListener):
   def on_post_save(self, view):
     s = sublime.load_settings(SETTINGS_FILE)
 
-    if view.file_name().endswith('.js') == False:
+    if view.file_name().endswith(('.js','.json','.css','.html','.html')) == False:
       return
 
     # run jsrevival.
