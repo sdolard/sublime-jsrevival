@@ -12,8 +12,8 @@ jsrevival:
   You also need jsrevival nodejs package.
    
   Once nodejs is installed call this command line:
-  Windows: npm install jsrevival
-  Linux/Mac: sudo npm install -g jsrevival
+    Windows: npm install -g jsrevival
+    Linux/Mac: sudo npm install -g jsrevival
 
 
   There are two interfaces to use:
