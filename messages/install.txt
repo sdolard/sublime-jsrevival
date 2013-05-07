@@ -7,10 +7,10 @@ jsrevival:
   Thanks for installing Sublime jsrevival! Below are some quick notes to get you
   started with the plugin. Please see https://github.com/sdolard/sublime-jsrevival for
   the full documentation.
-  
+
   This plugin require to have nodejs installed on your host: http://nodejs.org
-  You also need jsrevival nodejs package.
-   
+  You also need jsrevival 0.2.x nodejs package.
+
   Once nodejs is installed call this command line:
     Windows: npm install -g jsrevival
     Linux/Mac: sudo npm install -g jsrevival
@@ -18,23 +18,23 @@ jsrevival:
 
   There are two interfaces to use:
   1. The Command Palette
-  
+
      All commands are available here. To see the commands that are applicable
      to the current file, folder or working copy, look for the "Show Applicable"
      commands.
-  
+
      The command palette is opened by Ctrl+Shift+J on Windows/Linux and
      Cmd+Shift+J on OS X.
-  
+
   2. Menus
-  
+
      The side bar and editor context menus include basic commands.
-  
-  
+
+
 Support
 -------
-  
+
   To learn more about the features and settings, please visit
   https://github.com/sdolard/sublime-jsrevival.
-  
+
   If you are having trouble, please contact me at sdolard@gmail.com.
